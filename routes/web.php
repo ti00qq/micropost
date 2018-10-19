@@ -23,4 +23,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //ユーザー一覧＆ユーザー詳細
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
 });
