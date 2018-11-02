@@ -20,6 +20,7 @@
                 <li role="presentation" class="{{ Request::is('users/*/followers') ? 'active' : '' }}"><a href="{{ route('users.followers', ['id' => $user->id]) }}">Followers <span class="badge">{{ $count_followers }}</span></a></li>
             </ul>
             @include('users.users', ['users' => $users])
+            @include('user_favorite.favorite_button', ['user' => $user])
         </div>
     </div>
 @endsection

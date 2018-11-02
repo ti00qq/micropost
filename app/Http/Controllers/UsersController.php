@@ -63,4 +63,20 @@ class UsersController extends Controller
 
         return view('users.followers', $data);
     }
+    
+    //userがお気に入りに入れているmicropost群
+    public function favorite_microposts($id)
+    {
+        $user = \Auth::user();
+        $microposts = $user->feed_favorite_microposts()->orderBy('created_at', 'desc')->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'microposts' => $microposts,
+        ];
+        $data += $this->counts($user);
+        
+        return view('users.favorite_microposts', $data);
+    }
+    
 }
